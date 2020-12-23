@@ -149,18 +149,18 @@ ggsave("./output/all-boxplot.png", plot=plAll, dpi = 300, width = 5, height = 4)
 
 
 # write csv file of results
-write.csv((res1 %>% mutate_if(is.numeric, round, digits=2))[,1:7], "./output/commons-cli-means.csv", row.names=FALSE)
-write.csv((res2 %>% mutate_if(is.numeric, round, digits=2))[,1:7], "./output/commons-math-means.csv", row.names=FALSE)
-write.csv((res3 %>% mutate_if(is.numeric, round, digits=2))[,1:7], "./output/http-request-means.csv", row.names=FALSE)
-write.csv((res4 %>% mutate_if(is.numeric, round, digits=2))[,1:7], "./output/joda-time-means.csv", row.names=FALSE)
-write.csv((res5 %>% mutate_if(is.numeric, round, digits=2))[,1:7], "./output/json-java-means.csv", row.names=FALSE)
-write.csv((res6 %>% mutate_if(is.numeric, round, digits=2))[,1:7], "./output/jsoup-means.csv", row.names=FALSE)
-write.csv((res7 %>% mutate_if(is.numeric, round, digits=2))[,1:7], "./output/spatial4j-means.csv", row.names=FALSE)
-write.csv((res8 %>% mutate_if(is.numeric, round, digits=2))[,1:7], "./output/joda-money-means.csv", row.names=FALSE)
-write.csv((res9 %>% mutate_if(is.numeric, round, digits=2))[,1:7], "./output/commons-codec-means.csv", row.names=FALSE)
-write.csv((res10 %>% mutate_if(is.numeric, round, digits=2))[,1:7], "./output/vertx-means.csv", row.names=FALSE)
+write.csv((res1 %>% mutate_if(is.numeric, round, digits=4))[,1:7], "./output/commons-cli-means.csv", row.names=FALSE)
+write.csv((res2 %>% mutate_if(is.numeric, round, digits=4))[,1:7], "./output/commons-math-means.csv", row.names=FALSE)
+write.csv((res3 %>% mutate_if(is.numeric, round, digits=4))[,1:7], "./output/http-request-means.csv", row.names=FALSE)
+write.csv((res4 %>% mutate_if(is.numeric, round, digits=4))[,1:7], "./output/joda-time-means.csv", row.names=FALSE)
+write.csv((res5 %>% mutate_if(is.numeric, round, digits=4))[,1:7], "./output/json-java-means.csv", row.names=FALSE)
+write.csv((res6 %>% mutate_if(is.numeric, round, digits=4))[,1:7], "./output/jsoup-means.csv", row.names=FALSE)
+write.csv((res7 %>% mutate_if(is.numeric, round, digits=4))[,1:7], "./output/spatial4j-means.csv", row.names=FALSE)
+write.csv((res8 %>% mutate_if(is.numeric, round, digits=4))[,1:7], "./output/joda-money-means.csv", row.names=FALSE)
+write.csv((res9 %>% mutate_if(is.numeric, round, digits=4))[,1:7], "./output/commons-codec-means.csv", row.names=FALSE)
+write.csv((res10 %>% mutate_if(is.numeric, round, digits=4))[,1:7], "./output/vertx-means.csv", row.names=FALSE)
 
-write.csv((resAll %>% mutate_if(is.numeric, round, digits=2))[,1:7], "./output/all-means.csv", row.names=FALSE)
+write.csv((resAll %>% mutate_if(is.numeric, round, digits=4))[,1:7], "./output/all-means.csv", row.names=FALSE)
 
 # average of target goals and methods in all classes
 classes <- aggregate(dataAll[, c("Total_Goals", "Total_Methods")],list(dataAll$TARGET_CLASS), mean)

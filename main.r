@@ -75,64 +75,64 @@ res10["Coverage_SD"] <- res10sd[,2]
 
 # box plots for each project
 pl1 <- ggplot(data1, aes(x=configuration_id, y=Coverage))+
-  geom_boxplot()+xlab('Configuration')+ylim(0,1)+ ggtitle("Commons CLI")+
-  theme(plot.title = element_text(face = "bold"), axis.text.x = element_text(angle = 45, margin=margin(t=16)))+
+  geom_boxplot()+ylim(0,1)+ ggtitle("Commons CLI")+
+  theme(plot.title = element_text(face = "bold"), axis.text.x = element_text(angle = 45, margin=margin(t=16)),axis.title.x=element_blank())+
   stat_summary(fun = mean, geom = "point", shape = 18, size = 1.5, color = "red")
-ggsave("./output/commons-cli-boxplot.png", plot=pl1, dpi = 300, width = 5, height = 4)
+ggsave("./output/commons-cli-boxplot.png", plot=pl1, dpi = 300, width = 5, height = 3.7)
 
 pl2 <- ggplot(data2, aes(x=configuration_id, y=Coverage))+
   geom_boxplot()+xlab('Configuration')+ylim(0,1)+ ggtitle("Commons Math")+
-  theme(plot.title = element_text(face = "bold"), axis.text.x = element_text(angle = 45, margin=margin(t=16)))+
+  theme(plot.title = element_text(face = "bold"), axis.text.x = element_text(angle = 45, margin=margin(t=16)),axis.title.x=element_blank())+
   stat_summary(fun = mean, geom = "point", shape = 18, size = 1.5, color = "red")
-ggsave("./output/commons-math-boxplot.png", plot=pl2, dpi = 300, width = 5, height = 4)
+ggsave("./output/commons-math-boxplot.png", plot=pl2, dpi = 300, width = 5, height = 3.7)
 
 pl3 <- ggplot(data3, aes(x=configuration_id, y=Coverage))+
   geom_boxplot()+xlab('Configuration')+ylim(0,1)+ ggtitle("http-request")+
-  theme(plot.title = element_text(face = "bold"), axis.text.x = element_text(angle = 45, margin=margin(t=16)))+
+  theme(plot.title = element_text(face = "bold"), axis.text.x = element_text(angle = 45, margin=margin(t=16)),axis.title.x=element_blank())+
   stat_summary(fun = mean, geom = "point", shape = 18, size = 1.5, color = "red")
-ggsave("./output/http-request-boxplot.png", plot=pl3, dpi = 300, width = 5, height = 4)
+ggsave("./output/http-request-boxplot.png", plot=pl3, dpi = 300, width = 5, height = 3.7)
 
 pl4 <- ggplot(data4, aes(x=configuration_id, y=Coverage))+
   geom_boxplot()+xlab('Configuration')+ylim(0,1)+ggtitle("Joda Time")+
-  theme(plot.title = element_text(face = "bold"), axis.text.x = element_text(angle = 45, margin=margin(t=16)))+
+  theme(plot.title = element_text(face = "bold"), axis.text.x = element_text(angle = 45, margin=margin(t=16)),axis.title.x=element_blank())+
   stat_summary(fun = mean, geom = "point", shape = 18, size = 1.5, color = "red")
-ggsave("./output/joda-time-boxplot.png", plot=pl4, dpi = 300, width = 5, height = 4)
+ggsave("./output/joda-time-boxplot.png", plot=pl4, dpi = 300, width = 5, height = 3.7)
 
 pl5 <- ggplot(data5, aes(x=configuration_id, y=Coverage))+
   geom_boxplot()+xlab('Configuration')+ylim(0,1)+ ggtitle("Json Java")+
-  theme(plot.title = element_text(face = "bold"), axis.text.x = element_text(angle = 45, margin=margin(t=16)))+
+  theme(plot.title = element_text(face = "bold"), axis.text.x = element_text(angle = 45, margin=margin(t=16)),axis.title.x=element_blank())+
   stat_summary(fun = mean, geom = "point", shape = 18, size = 1.5, color = "red")
-ggsave("./output/json-java-boxplot.png", plot=pl5, dpi = 300, width = 5, height = 4)
+ggsave("./output/json-java-boxplot.png", plot=pl5, dpi = 300, width = 5, height = 3.7)
 
 pl6 <- ggplot(data6, aes(x=configuration_id, y=Coverage))+
   geom_boxplot()+xlab('Configuration')+ylim(0,1)+ggtitle("Jsoup")+
-  theme(plot.title = element_text(face = "bold"), axis.text.x = element_text(angle = 45, margin=margin(t=16)))+
+  theme(plot.title = element_text(face = "bold"), axis.text.x = element_text(angle = 45, margin=margin(t=16)),axis.title.x=element_blank())+
   stat_summary(fun = mean, geom = "point", shape = 18, size = 1.5, color = "red")
-ggsave("./output/jsoup-boxplot.png", plot=pl6, dpi = 300, width = 5, height = 4)
+ggsave("./output/jsoup-boxplot.png", plot=pl6, dpi = 300, width = 5, height = 3.7)
 
 pl7 <- ggplot(data7, aes(x=configuration_id, y=Coverage))+
   geom_boxplot()+xlab('Configuration')+ylim(0,1)+ggtitle("Spatial4j")+
-  theme(plot.title = element_text(face = "bold"), axis.text.x = element_text(angle = 45, margin=margin(t=16)))+
+  theme(plot.title = element_text(face = "bold"), axis.text.x = element_text(angle = 45, margin=margin(t=16)),axis.title.x=element_blank())+
   stat_summary(fun = mean, geom = "point", shape = 18, size = 1.5, color = "red")
-ggsave("./output/spatial4j-boxplot.png", plot=pl7, dpi = 300, width = 5, height = 4)
+ggsave("./output/spatial4j-boxplot.png", plot=pl7, dpi = 300, width = 5, height = 3.7)
 
 pl8 <- ggplot(data8, aes(x=configuration_id, y=Coverage))+
   geom_boxplot()+xlab('Configuration')+ylim(0,1)+ggtitle("Joda Money")+
-  theme(plot.title = element_text(face = "bold"), axis.text.x = element_text(angle = 45, margin=margin(t=16)))+
+  theme(plot.title = element_text(face = "bold"), axis.text.x = element_text(angle = 45, margin=margin(t=16)),axis.title.x=element_blank())+
   stat_summary(fun = mean, geom = "point", shape = 18, size = 1.5, color = "red")
-ggsave("./output/joda-money-boxplot.png", plot=pl8, dpi = 300, width = 5, height = 4)
+ggsave("./output/joda-money-boxplot.png", plot=pl8, dpi = 300, width = 5, height = 3.7)
 
 pl9 <- ggplot(data9, aes(x=configuration_id, y=Coverage))+
   geom_boxplot()+xlab('Configuration')+ylim(0,1)+ggtitle("Commons Codec")+
-  theme(plot.title = element_text(face = "bold"), axis.text.x = element_text(angle = 45, margin=margin(t=16)))+
+  theme(plot.title = element_text(face = "bold"), axis.text.x = element_text(angle = 45, margin=margin(t=16)),axis.title.x=element_blank())+
   stat_summary(fun = mean, geom = "point", shape = 18, size = 1.5, color = "red")
-ggsave("./output/commons-codec-boxplot.png", plot=pl9, dpi = 300, width = 5, height = 4)
+ggsave("./output/commons-codec-boxplot.png", plot=pl9, dpi = 300, width = 5, height = 3.7)
 
 pl10 <- ggplot(data10, aes(x=configuration_id, y=Coverage))+
   geom_boxplot()+xlab('Configuration')+ylim(0,1)+ggtitle("Vert.X")+
-  theme(plot.title = element_text(face = "bold"), axis.text.x = element_text(angle = 45, margin=margin(t=16)))+
+  theme(plot.title = element_text(face = "bold"), axis.text.x = element_text(angle = 45, margin=margin(t=16)),axis.title.x=element_blank())+
   stat_summary(fun = mean, geom = "point", shape = 18, size = 1.5, color = "red")
-ggsave("./output/vertx-boxplot.png", plot=pl10, dpi = 300, width = 5, height = 4)
+ggsave("./output/vertx-boxplot.png", plot=pl10, dpi = 300, width = 5, height = 3.7)
 
 
 # box plot on all data

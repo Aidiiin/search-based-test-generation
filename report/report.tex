@@ -111,13 +111,11 @@
 %% The abstract is a short summary of the work to be presented in the
 %% article.
 \begin{abstract}
-  Search based test generation techniques are one of the effective test generation approaches. 
+  Search-based test generation techniques are one of the effective test generation approaches. 
   EVOSUITE is one of the whole test suite generation tools that has implemented several 
-  type of Genetic Algorithms. We compare and show the results of generating tests for 10 open source 
+  types of Genetic Algorithms. We compare and show the results of generating tests for ten open-source 
   Java projects with a combination of different selection and crossover functions in EVOSUITE. 
   We have also extended EVOSUITE and implemented the two-point crossover function.
- 
-
 \end{abstract}
 
 
@@ -152,7 +150,7 @@
 %%
 %% Keywords. The author(s) should pick words that accurately describe
 %% the work being presented. Separate the keywords with commas.
-\keywords{genetic algorithms, test generation, search based software engineering, empirical evaluation}
+\keywords{genetic algorithms, test generation, search-based software engineering, empirical evaluation}
 
 %% A "teaser" image appears between the author and affiliation
 %% information and the body of the document, and typically spans the
@@ -171,92 +169,92 @@
 \maketitle
 
 \section{Introduction}
-Search Based Software Engineering (SBSE) has numerous use cases \cite{10.1145/2379776.2379787,Harman2012}.
-One of the exciting applications of SBSE is automated unit test generation. There several works on this
+Search-Based Software Engineering (SBSE) has numerous use cases \cite{10.1145/2379776.2379787,Harman2012}.
+One of the exciting applications of SBSE is automated unit test generation. There are several works on this
 subject \cite{57624,6004309,10.1145/1276958.1277172,10.1145/1013886.1007528}. One of the methods of automated
 unit test generation is using Genetic Algorithms. EVOSUITE \cite{6004309} is 
-a novel evolutionary based approach for whole test suit generation. There are two approaches to search 
+a novel evolutionary-based approach for whole test suit generation. There are two approaches to search 
 based test generation, one is targeting a single criterion at a time, for example, targeting each branch
 individually and generating data for that particular target branch. The other approach is generating and 
-optimizing the whole test suit at the same time while maximizing coverage and minimizing test size. 
+optimizing the whole test suit at the same time while maximizing coverage and minimizing test suite size. 
 Instead of generating tests for each target goal one at a time, it generates and optimizes a whole test suite 
 simultaneously. 
 
 EVOSUITE is a solution in the latter category, it is a whole test suite generation solution that can
 target multiple criteria at the same time. EVOSUITE starts with a random set of initial solutions and uses 
-an evolutionary approach to improve solutions until the chosen criteria is satisfied.
-After generating solutions it will minimize the test suite size. EVOSUITE is developed in Java and currently 
+an evolutionary approach to improve solutions until the chosen criteria are satisfied.
+After generating solutions it will minimize the test suite size. EVOSUITE is developed in Java. Currently, 
 it only generates tests in the JUnit format for Java programs. EVOSUITE works by instrumenting the compiled 
-java bytecode and collecting metrics from the runtime. EVOSUITE has been designed to write tests 
+java bytecode and collecting metrics from the runtime. EVOSUITE is designed to write tests 
 for object-oriented programs, therefore it can comfortably generate tests for a Class, 
 which may require a sequence of method calls. 
 
-Genetic Algorithms are used to optimize and evolve a set of initial toward better fitness values.
-Like all search based techniques Genetic Algorithms also have a solution representation and fitness function 
+Genetic Algorithms are used to optimize and evolve a set of initial solutions toward better fitness values.
+Like all search-based techniques, Genetic Algorithms also have a solution representation and fitness function 
 defined for the problem at hand. A typical flow of a Genetic Algorithm is as follows. 
-The first step is initialization, one way to do this is to randomly generate initial solutions. After calculating
-the fitness of each individual solution, a few of them are selected to create offsprings. This is called 
+The first step is the initialization, one way to do this is to randomly generate initial solutions. After calculating
+the fitness of each solution, a few of them are selected to create offsprings. This is called 
 the Selection step. One method to do selection is to simply choose solutions with the best fitness values.
 After selecting parents, offsprings are created by applying a Crossover function. A popular way of doing crossover
 is to simply flip parents at a point and select before/after the point for each child. For example, suppose
-our solution is represented as an array of numbers and we have selected the middle of array as the flipping point.
-From the beginning to the middle of the first parent and from middle to the end off
-second parent goes to the first child, and vice versa for the second child. After breeding a new generation of
+our solution is represented as an array of numbers and we have selected the middle of the array as the flipping point.
+From the beginning to the middle of the first parent and from the middle to the end of
+the second parent goes to the first child, and vice versa for the second child. After breeding a new generation of
 solutions mutations operators are applied to solutions. Mutation operators depend on the problem and 
-solution representation. This process from fitness evaluation to mutations, continues until termination criteria
-is met or appropriate solutions are found.
+solution representation. This process from fitness evaluation to mutations continues until termination criteria
+are met or appropriate solutions are found.
 
 EVOSUITE is a highly configurable software, users can tweak its numerous parameters to achieve the best result. 
-Authors of EVOSUITE have implemented several variation of Genetic Algorithms. In this report we compare 
-a variation of different crossover and selection functions for the standard genetic algorithm implemented in EVOSUITE.
+Authors of EVOSUITE have implemented several variations of Genetic Algorithms. In this report, we compare 
+a variety of different crossover and selection functions for the standard genetic algorithm implemented in EVOSUITE.
 We used the standard Genetic Algorithm as the base and evaluated the performance of 
 Uniform, Single point, and Two-point crossover functions in combination with Rank, Roulette Wheel, Tournament, 
 and Best-k selection methods. Therefore we have eight combination of configurations to evaluate. 
 EVOSUITE does not include the Two-point crossover function and we have implemented it.
-We have selected ten highly used popular and open source Java libraries from GitHub for our tests.
+We have selected ten popular and open-source Java libraries from GitHub for our tests.
 
-The structure of this report is as follow. First, in Section \ref{relatedworks} we introduce other
+The structure of this report is as follows. First, in Section \ref{relatedworks} we introduce other
 empirical works related to test generation with EVOSUITE then in Section \ref{experiments} we describe
 our testing approach, we explain our test configurations and procedure. Also, we briefly describe each of
 our test subjects. Finally, in Section \ref{evaluation} we show the result of our evaluations.
 
 \section{Related Works}
 \label{relatedworks}
-One of the most comprehensive works that evaluates the performance of EVOSUITE is \cite{CAMPOS2018207}. They have
+One of the most comprehensive work that evaluates the performance of EVOSUITE is \cite{CAMPOS2018207}. They have
 compared the performance of different test generation algorithms, such as Standard GA, Monotonic GA, 
 DynaMOSA \cite{7840029}, MIO \cite{Arcuri_2017}, etc, in EVOSUITE. 
-Their tests include both single objective and multi objective evaluations. They have concluded that
-DynaMOSA has the most covered targets in both single and multi criterion scenarios. The goal of their work is
-comparing different test generation algorithms, however, we want to compare the performance of different crossover
+Their tests include both single objective and multi-objective evaluations. They have concluded that
+DynaMOSA has the most covered targets in both single and multi-objective scenarios. The goal of their work is
+to compare different test generation algorithms, however, we want to compare the performance of different crossover
 and selection methods. We have used the Standard GA as our base algorithm and assessed the results under different
 configurations.
 
 Another comprehensive work is the work of Arcuri and Fraser \cite{Tuning13} which evaluates several 
-hyper parameters of EVOSUITE and the effect of parameter tuning in test generation problems in general.
-They are more concerned on the effect of parameters like population size, crossover rate, probability
+hyperparameters of EVOSUITE and the effect of parameter tuning in test generation problems in general.
+They are more concerned with the effect of parameters like population size, crossover rate, probability
 configurations, search budget, etc. 
 
 Another work is \cite{emse16_effectiveness} which compares the traditional single criterion approaches
-with multi objective approaches available in EVOSUITE. Traditionally test generation solutions take
+with multi-objective approaches available in EVOSUITE. Traditionally test generation solutions take
 a single criterion like branch coverage to generate unit tests. In newer whole test suite generation 
-approaches several criteria like line coverage, branch coverage, and etc can be used by algorithms 
-like DynaMOSA DynaMOSA \cite{7840029} at the same time. 
-These algorithm optimize for all of the targets at the same time. Their work concluded
-that there may be a small set of targets that may not be covered by multi objective approaches.
+approaches several criteria like line coverage, branch coverage, etc can be used by algorithms 
+like DynaMOSA \cite{7840029} at the same time. 
+These algorithms optimize for all of the targets at the same time. Their work concluded
+that there may be a small set of targets that may not be covered by multi-objective approaches.
 
 One more empirical work is \cite{STVR_seeding} that evaluates several seeding strategies for test generation
-problems. Seeding is the problems of providing values for method and class parameters when generating or
-modifying unit test in search based techniques. There several solutions for seeding. For example, 
+problems. Seeding is the problem of providing values for method and class parameters when generating or
+modifying unit tests in search-based techniques. There are several solutions for seeding. For example, 
 one way is to randomly use available constant values in the source code as input parameters.
 Another way is to observe passed parameters during runtime and use them during test generation. They have concluded 
-that the choice of seeding strategy can greatly impact the performance of search based test generation solutions.
+that the choice of seeding strategy can impact the performance of search-based test generation solutions.
 
 \section{Experiments}
 \label{experiments}
-We have used EVOSUITE test generation tool to compare performance of several crossover 
+We have used the EVOSUITE test generation tool to compare the performance of several crossover 
 and selection functions with the standard Genetic Algorithm. 
-In total our evaluations included 153 Java classes from various popular open source projects 
-and we have performed 12240 tests. 
+In total, our evaluations included 165 Java classes from various popular open-source projects 
+and we have performed 12,240 tests. 
 
 \subsection{Configurations}
 As mentioned earlier we have a total of eight configurations to compare. We have tested the performance
@@ -266,19 +264,19 @@ We have only used the standard GA, which is denoted by the configuration value \
 In the followed subsections we briefly describe each algorithm that we have tested.
 
 \subsubsection{Selection methods}
-Selection is one of the stages in a genetic algorithm. In this stage a number of of pair of parents
-are selected to make offsprings. There are several selection methods available for use in genetic algorithms.
+Selection is one of the stages in a genetic algorithm. In this stage, a number of pairs of parents
+are selected to build offsprings. There are several selection methods available for use in genetic algorithms.
 We assessed four selection methods implemented in EVOSUITE, Rank Selection, Roulette Wheel, Tournament Selection, 
 and Best-k.
 \begin{itemize}
   \item{Roulette Wheel}: In this method each individual is given a probability of selection equal to 
-  their fitness values, therefore, better individuals have much higher chance of being selected. It is denoted
+  their fitness values, therefore, better individuals have a much higher chance of being selected. It is denoted
   by \verb|ROULETTEWHEEL| value in EVOSUITE properties.
-  \item{Rank Selection}: In Rank selection parents are first sorted according to their fitness 
+  \item{Rank Selection}: In Rank selection, parents are first sorted according to their fitness 
   value and then each is given a probability of selection equal to their rank. Its advantage over 
   Roulette Wheel is that it still gives individuals with a low fitness value a chance of being selected.
-  In Roulette Wheel individuals with a high fitness value  proportion of 
-  It is denoted by \verb|RANK| value in EVOSUITE properties.
+  In Roulette Wheel individuals with a high fitness value fill much more proportion of the probability space,
+  but Rank Selection fixes this problem. It is denoted by \verb|RANK| value in EVOSUITE properties.
   \item{Tournament Slection}: Individual chromosomes of the population are matched against each other
   in a tournament fashion and the winners are selected for crossover. It is denoted
   by \verb|TOURNAMENT| value in EVOSUITE properties.
@@ -289,32 +287,32 @@ and Best-k.
 \subsubsection{Crossover methods}
 After choosing parents by applying a selection method, offsprings are created from parents by using a
 crossover function. There are several crossover functions proposed for use in Genetic Algorithms. We evaluated
-the performance of Uniform and Relative Single Point crossover functions implemented in EVOSUITE. We have 
+the performance of Uniform, Relative Single Point, and Two-point crossover functions implemented in EVOSUITE. We have 
 extended EVOSUITE and implemented the two-point crossover method.
 \begin{itemize}
   \item{Relative Single Point}: This method is like the standard Single Point crossover function,
-  however in Relative Single Point the size of individuals is also taken into account. For example, If we want
-  to select half of each parents and perform crossover, then for a chromosome of size 10 the cut point is five,
-  but for a chromosome of size 14 the cut point is seven. This method is useful for solutions with individuals
+  however, in the Relative Single Point, the size of individuals is also taken into account. For example, If we want
+  to select half of each parent and perform crossover, then for a chromosome of size 10, The cut point is five,
+  but for a chromosome of size 14, the cut point is seven. This method is useful for solutions with individuals
   with variable size. The definition of size is dependent on the solution representation. In EVOSUITE
   an individual is a set of unit tests (test suite) and the size of test suites are variable.
-  \item{Uniform}: In Uniform crossover function, each gene of the offspring chromosomes are selected
-  from parents by a configurable probability.
+  \item{Uniform}: In Uniform crossover function, two children exactly like each parent are cloned. Then for each
+  gene of the offspring chromosomes it is decided by a configurable probability whether to swap it with each other or not.
 \end{itemize}
 
 
 \subsection{Test Subjects}
 \label{testsubjects}
-We have evaluated the performance of each configuration on 10 open source and popular Java libraries.
+We have evaluated the performance of each configuration on ten open-source and popular Java libraries.
 In Table \ref{tab:subjects} you can see the list of projects and the version that we have performed 
 our tests. These libraries are commonly used in java applications by developers. These are 
 from different domains such as utility tools, mathematical functions, parsing, etc. 
 We have avoided including libraries related to parallel or distributed applications since
 generating tests for such libraries may require providing unique conditions. Due to the limited computation resources,
 if a project had more than 20 classes, we have randomly chosen only 20 classes for test generation.
-In total we have 165 classes. Our selection included classes a variety of simple and complex classes, 
-the average number of methods is 18, and the average of target goals is 66. Below you can find a short 
-description of each project directly quoted from its respective websites.
+In total, we have 165 classes. Our selection included a variety of simple and complex classes, 
+the average count of methods is 18, and the average of target goals is 66. Below you can find a short 
+description of each project directly quoted from their respective websites.
 
 \begin{itemize}
   \item{Commons CLI}: ``The Apache Commons CLI library provides an API for parsing command line options 
@@ -328,15 +326,14 @@ description of each project directly quoted from its respective websites.
   \item{http-request}: ``A simple convenience library for using a \linebreak
   \verb|HttpURLConnection| to make requests and access the response.'' \cite{web:httpreq}
   \item{Joda Time}: ``Joda-Time provides a quality replacement for the Java date and time classes.
-  Joda-Time is the de facto standard date and time library for Java prior to Java SE 8. Users are
-   now asked to migrate to java.time (JSR-310).'' \cite{web:jodatime}
+  Joda-Time is the de facto standard date and time library for Java prior to Java SE 8.'' \cite{web:jodatime}
   \item{Joda Money}: ``Joda-Money provides a library of classes to store amounts of money.
   The JDK provides a standard currency class, but not a standard representation of money. 
   Joda-Money fills this gap, providing the value types to represent money.'' \cite{web:jodamoney}
   \item{JSON Java}: ``The JSON-Java package is a reference implementation that demonstrates 
   how to parse JSON documents into Java objects and how to generate new JSON documents
   from the Java classes.'' \cite{web:jsonjava}
-  \item{JSoup}: ``jsoup is a Java library for working with real-world HTML. It provides a very 
+  \item{JSoup}: ``Jsoup is a Java library for working with real-world HTML. It provides a very 
   convenient API for fetching URLs and extracting and manipulating data, using the best of HTML5 
   DOM methods and CSS selectors.'' \cite{web:jsoup}
   \item{Spatial4j}: ``LocationTech Spatial4j is a general purpose spatial / geospatial ASL licensed 
@@ -373,46 +370,40 @@ description of each project directly quoted from its respective websites.
 \subsection{Test Procedure}
 \label{testproc}
 We have tested each of the test subjects on all of the eight configurations. Given the random nature 
-of evolutionary algorithms we have ran each configuration 10 times for each project and averaged 
+of evolutionary algorithms, we have run each configuration 10 times for each project and averaged 
 the results. EVOSUITE implements several criteria targets. We have only used the branch coverage 
 criteria, therefore, we compare the branch coverage values across each configuration. For each Java 
-class the search budget was 30 seconds. If a project has 20 classes, then given the eight 
+class, the search budget was 30 seconds. If a project has 20 classes, then given the eight 
 configurations and ten runs, it would take approximately a maximum of 13 hours to complete. We did 
 not change other parameters like mutation rates, crossover rates, etc, we used 
 the default parameters set by EVOSUITE authors, as it was concluded in \cite{Tuning13} that default parameters
 can achieve very good results.
 
 We wrote a PowerShell script to automatically run the test generation process for each combination of
-configurations ten times. For other parameters of the GA algorithms we used the default ones provided 
+configurations ten times. For other parameters of the GA algorithm, we used the default ones provided 
 by EVOSUITE authors. The default population size in EVOSUITE is 50.
 
 \section{Extending EVOSUITE}
 \label{estending}
-As a part of our evaluation we have implemented the two-point crossover function. By default EVOSUITE
+As a part of our evaluation, we have implemented the Two-point crossover function. By default EVOSUITE
 contains the Single Point and Uniform crossover functions, therefore we had to implement it ourselves.
 EVOSUITE has an extensible architecture, we were able to easily implement this new crossover function.
 The new class is in the package \verb|org.evosuite.ga.operators.crossover|, and the class name is
-\verb|DoublePointCrossOver|. The algorithms is the standard two-point crossover, it chooses two random 
-points and applies the crossover, for individuals with size of less than 4 it fallbacks to 
-the Single Point crossover. To configure EVOSUITE to use pur new crossover function, 
+\verb|DoublePointCrossOver|. The algorithm is the standard two-point crossover, it chooses two random 
+points and applies the crossover. For individuals with a size of less than 4 it fallbacks to 
+the Single Point crossover. To configure EVOSUITE to use our new crossover function, 
 the \verb|crossover_function| parameter has to be set to \verb|DOUBLEPOINT|.
 This parameter can be changed by either passing as a command argument or setting in the properties file.
 
 \section{Evaluation}
 \label{evaluation}
-In order to compare influence of various crossover and selection functions, we evaluated performance of 
-the test subjects. In total we ran a total 18,442 tests over 165 Java classes. In particular our 
+In order to compare the influence of various crossover and selection functions, we evaluated the performance of 
+test subjects. In total, we ran 18,442 tests over 165 Java classes. In particular our 
 research questions are:
-\begin{itemize}
-  \item[RQ1)] \textit{What is the effect of different selection functions of GA algorithm in test generation?}
-  \item[RQ2)] \textit{What is the effect of different crossover functions of GA algorithm in test generation?}
-  \item[RQ3)] \textit{Will changing selection/crossover functions improve results, are they significant?}
-\end{itemize}
-
 \begin{table*}[h!t]
-  \caption{For each configuration we calculated mean of branch coverage, size of test suite, 
-  total length of the statements in the test suite, mutation score, count of fitness evaluations, 
-  and the standard deviation of branch coverage, across all 18,444 runs}
+  \caption{For each configuration, we calculated the mean of branch coverage, the size of test suite, 
+  the total length of the statements in the test suite, mutation score, count of fitness evaluations, 
+  and the standard deviation of branch coverage across all 18,444 runs.}
   \label{tab:allresults}
   \begin{tabular}{lcccccc}
     \toprule
@@ -436,10 +427,16 @@ research questions are:
     \bottomrule
   \end{tabular}
 \end{table*}
+\begin{itemize}
+  \item[RQ1)] \textit{What is the effect of different selection functions of the GA algorithm in test generation?}
+  \item[RQ2)] \textit{What is the effect of different crossover functions of the GA algorithm in test generation?}
+  \item[RQ3)] \textit{Will changing selection/crossover functions improve results? Are they significant?}
+\end{itemize}
+
 To answer our research questions we collected the results of test generation of EVOSUITE for every run across all 
 eight configurations.
-We used an \textit{r} script to calculate a few metrics. We calculated the mean of branch coverage, size of test suite, 
-total length of the statements in the test suite, mutation score, count of fitness evaluations, 
+We used an \textit{R} script to calculate a few metrics. We calculated the mean of branch coverage, the size of test suite, 
+the total length of the statements in the test suite, mutation score, count of fitness evaluations, 
 and the standard deviation of branch coverage. In Table~\ref{tab:allresults} you can see these metrics calculated 
 across the whole 18,442 test runs. We can observe that the Best-k selection function, with  
 Single-point crossover has the highest mean of branch coverage (85.72\%). 
@@ -453,18 +450,17 @@ To further analyze the results of each configuration we have provided the box pl
 for each project, from Fig.~\ref{fig:boxplot1} to Fig.~\ref{fig:boxplot8}. The branch coverage 
 of EVOSUITE is variable across projects. Again we see that the Uniform crossover function 
 impacts the performance of the GA algorithm, it is more obvious in projects like Joda Money,
-Vert.x, http-request, and Spatial4j. The vert.x project is one of the most complex software in Java, We 
-intentionally put this project in our tests to see how EVOSUITE can perform in modern and complex Java 
-libraries. We see that the variance of branch coverage in it, is high. But still the fact 
+Vert.x, http-request, and Spatial4j. The Vert.x project is one of the most complex software in Java, 
+We see that the variance of branch coverage in it is high. But still the fact 
 that EVOSUITE can generate unit tests with good branch coverage for such a complex project is noteworthy. 
 
 The dataset of collected metrics from EVOSUITE, calculated metrics, and 
-the used \textit{r} script is available in the code repository. 
+the used \textit{R} script is available in the code repository. 
 
 \subsection{RQ1}
-As we observed, the selection functions does not play a significant role in Genetic Algorithms for automated 
+As we observed, the selection functions do not play a significant role in Genetic Algorithms for automated 
 test generation. We can't see a significant difference in performance in runs across the eight test configurations.
-The Best-k selection function has the highest branch coverage with average of 85.72\% across all 18,442 tests.
+The Best-k selection function has the highest branch coverage with the average of 85.72\% across all 18,442 tests.
 Regardless of the crossover function in Table~\ref{tab:allresults} we see that it achieves higher coverage than 
 other selection functions. We also see that the Tournament selection function has the lowest branch coverage.
 Overall the branch coverage value does not vary much among various selection functions.
@@ -481,35 +477,34 @@ Overall the branch coverage value does not vary much among various selection fun
 As we observed, the crossover function can impact the branch coverage. The results of Single-point crossover 
 and Two-point crossover functions are almost identical. But, the Uniform
 crossover function has the worst performance and consistently performs worse than the other two. The highest
-average of branch coverage for Uniform Crossover function was 82.45\%, three percent lower than the other two 
+average of branch coverage for the Uniform Crossover function was 82.45\%, which is three percent lower than the other two 
 crossover functions. Also, the lowest branch coverage for it was 80.69\% when it was used with Tournament Selection
-function. It is noticeable that the average of count of fitness evaluations of Uniform Crossover function was 
-significantly lower than others in all setups. While the average of fitness evaluation count of other crossover 
+function. It is noticeable that the average count of fitness evaluations of Uniform Crossover function was 
+significantly lower than others in all setups. While the average fitness evaluation count of other crossover 
 functions was more than 15,000, the highest value for Uniform crossover was 11,655. It is not clear to us that 
-whether this observation is due to a implementation bug in EVOSUITE or the nature of Uniform function. 
+whether this observation is due to an implementation bug in EVOSUITE or the nature of Uniform function. 
 However, its lower coverage values may be attributed to its algorithm. At each step, the Uniform function mixes 
-much more genes than the other two function, this act may decrease the branch coverage of better individuals.
+much more genes than the other two functions, this act may decrease the branch coverage of better individuals.
 
 \subsection{RQ3}
-Except the fact that the Uniform crossover function made results worse, we don't think that choice of 
+Except for the fact that the Uniform crossover function made results worse, we don't think that choice of 
 selection and crossover functions can impact the results. Other factors such as the choice of fitness function and 
 the main algorithm (we used the Standard GA) has much more effect as was evaluated by other studies 
 \cite{CAMPOS2018207}.
 
 \subsection{Threats to Validity}
-We were able to study over a small sample of open source Java projects and our empirical evaluations are prone 
+We were able to study over a small sample of open-source Java projects and our empirical evaluations are prone 
 to External Validity. However, even with our small sample subjects, a few patterns were emerging. 
 
 \section{Conclusion}
 \label{conclusion}
 To study the effect of several selection and crossover functions on automated test generation with  
-Genetic Algorithms, we performed 18,442 tests over 165 Java classes from 10 popular open source projects. 
+Genetic Algorithms, we performed 18,442 tests over 165 Java classes from 10 popular open-source projects. 
 We employed the Standard Genetic algorithm implemented in EVOSUITE and measured the impact of 
-Uniform, Single-point, and Two-point crossover, and Rank, Tournament, Roulette Wheel selection functions.
+Uniform, Single-point, and Two-point crossover, and Rank, Tournament, Best-k, Roulette Wheel selection functions.
 We discovered that the Uniform crossover function can result in poorer branch coverage. Also, we saw that
 the Best-k selection function yields the highest branch coverage. Nevertheless, the impact of various 
 selection functions is small and other factors such as fitness function should be configured. 
-
 
 
 
